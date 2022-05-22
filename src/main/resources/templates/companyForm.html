@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--1 g--4 g-s--12 docsHeader">Информация о компании</h1>
+    </header>
+
+    <div class="g--8 m--3">
+        <form th:object="${company}" th:action="@{/company/new}" method="post">
+<!--            <input type="hidden" th:field="*{id}"/>-->
+
+<!--            <label>id: <span style="color: red">*</span></label>-->
+            <input type="text" th:field="*{id}"/>
+            <p style="color: red" class="error"  th:errors="*{id}"></p>
+
+            <p></p>
+
+            <label>Нзвание: <span style="color: red">*</span></label>
+            <input type="text" th:field="*{companyTitle}"/>
+            <p style="color: red" class="error"  th:errors="*{companyTitle}"></p>
+
+            <p></p>
+
+            <label>Страна: <span style="color: red">*</span></label>
+            <select th:field="*{country}">
+                <option th:each="country: ${countries}" th:value="${country.id}" th:text="${country.country}"></option>
+            </select>
+            <p></p>
+
+            <label>Телефон: <span style="color: red">*</span></label>
+            <input type="tel" th:field="*{tel}"/>
+            <p style="color: red" class="error"  th:errors="*{tel}"></p>
+
+            <p></p>
+
+            <label>Email: <span style="color: red">*</span></label>
+            <input type="email" th:field="*{email}"/>
+            <p style="color: red" class="error"  th:errors="*{email}"></p>
+
+            <p></p>
+
+<!--            <p></p>-->
+
+<!--            <label>Пенсионер: <span style="color: red">*</span></label>-->
+<!--            <input type="checkbox" th:field="*{retired}" th:value="true"/>-->
+
+<!--            <p></p>-->
+
+<!--            <label>Ежемесячный доход: </label>-->
+<!--            <input type="text" th:field="*{monthlyIncome}"/>-->
+
+<!--            <p></p>-->
+
+            <button type="submit" class="btn-done btn--raised btn--red" style="font-size: large">Готово</button>
+
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../static/css/surface_styles.css" th:href="@{/css/surface_styles.css}" media="screen">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" media="screen">
+</head>
+
+<body>
+    <div th:fragment="header">
+        <input type="checkbox" id="nav--super-vertical-responsive">
+        <label for="nav--super-vertical-responsive">МЕНЮ</label>
+        <aside class=" bg--black nav--super-vertical g--2 g-med--3 g-small--6 g-tiny--12 no-margin-vertical">
+            <div class="g--12 logo-area no-margin-vertical logo">
+                <img src="../static/images/Logo.png" th:src="@{/images/log.png}"/>
+            </div>g--12
+            <nav class="">
+                <a style="color: white" th:href="@{/}">Начальная страница</a>
+<!--                <a th:href="@{/company/companies}">Список компаний</a>-->
+<!--                <a th:href="@{/company/company/new}"><span style="color: red; font-weight: bold; margin-right: 5px">+</span>Добавить компанию</a>-->
+                <div class="nav-collapsible">
+                    <input type="checkbox" id="nav-collapsible-1">
+                    <label style="color: white" for="nav-collapsible-1">Операции</label>
+                    <div class="nav-collapsible-links">
+                        <a style="color: white" th:href="@{/company/companies}">Список компаний</a>
+                        <a style="color: white" th:href="@{/company/new}"><span style="color: red; font-weight: bold; margin-right: 5px">+</span>Добавить компанию</a>
+                        <a style="color: white" th:href="@{/order/orders}">Список заказов</a>
+                        <a style="color: white" th:href="@{/order/new}"><span style="color: red; font-weight: bold; margin-right: 5px">+</span>Добавить запуск</a>
+                        <a style="color: white" th:href="@{/invoice/invoices}">Список инвойс</a>
+                        <a style="color: white" th:href="@{/invoice/new}"><span style="color: red; font-weight: bold; margin-right: 5px">+</span>Добавить инвойс</a>
+                        <a style="color: white" th:href="@{/product/products}">Список товаров</a>
+                        <a style="color: white" th:href="@{/product/new}"><span style="color: red; font-weight: bold; margin-right: 5px">+</span>Добавить товар</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+  <header class="container--wrap bg--black">
+    <h1 class="m--1 g--4 g-s--12 docsHeader">Информация о компании</h1>
+  </header>
+
+  <div class="g--8 m--3">
+    <form th:object="${product}" th:action="@{/product/productSave}" method="POST">
+      <input type="hidden" th:field="*{id}"/>
+
+      <label>Марка: <span style="color: red">*</span></label>
+      <input type="text" th:field="*{grade}"/>
+      <p style="color: red" class="error"  th:errors="*{grade}"></p>
+
+      <p></p>
+
+      <label>Категория: <span style="color: red">*</span></label>
+      <select th:field="*{metalCategory}">
+        <option th:each="metalCategory: ${metalCategories}" th:value="${metalCategory.id}" th:text="${metalCategory.category}"></option>
+      </select>
+
+      <p></p>
+
+      <label>Тип: <span style="color: red">*</span></label>
+      <input type="text" th:field="*{type}"/>
+      <p style="color: red" class="error" th:errors="*{type}"></p>
+
+      <p></p>
+
+      <button type="submit" class="btn-done btn--raised btn--red" style="font-size: large">Готово</button>
+
+    </form>
+  </div>
+
+</main>
+</body>
+</html>

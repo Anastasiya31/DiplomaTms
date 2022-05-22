@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--1 g--4 g-s--12 docsHeader">Информация о компании</h1>
+    </header>
+
+    <div class="g--8 m--3">
+        <form th:object="${invoice}" th:action="@{/invoice/new}" method="POST">
+<!--            <input type="hidden" th:field="*{id}"/>-->
+
+            <label>id: <span style="color: red">*</span></label>
+            <input type="text" th:field="*{id}"/>
+            <p style="color: red" class="error"  th:errors="*{id}"></p>
+
+            <p></p>
+
+            <label>Тип инвойса: <span style="color: red">*</span></label>
+            <input type="text" th:field="*{invoiceType}"/>
+            <p style="color: red" class="error"  th:errors="*{invoiceType}"></p>
+
+            <p></p>
+
+            <label>Компания: <span style="color: red">*</span></label>
+            <select th:field="*{company}">
+                <option th:each="company: ${companies}" th:value="${company}" th:text="${company.companyTitle}"></option>
+            </select>
+
+            <p></p>
+
+            <label>Номер заказа: <span style="color: red">*</span></label>
+            <select th:field="*{order}">
+                <option th:each="order: ${orders}" th:value="${order.id}" th:text="${order.product}"></option>
+            </select>
+
+            <p></p>
+
+            <label>Детали: <span style="color: red">*</span></label>
+            <input type="text" th:field="*{paymentDetails}"/>
+            <p style="color: red" class="error"  th:errors="*{paymentDetails}"></p>
+
+            <p></p>
+
+            <label>Дата: <span style="color: red">*</span></label>
+            <input type="date" th:field="*{data}"/>
+            <p style="color: red" class="error"  th:errors="*{data}"></p>
+
+            <p></p>
+
+            <button type="submit" class="btn-done btn--raised btn--red" style="font-size: large">Готово</button>
+
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

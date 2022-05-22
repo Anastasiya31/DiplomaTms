@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--3 g--6 g-s--12 docsHeader">Просмотр информации о клиенте</h1>
+    </header>
+    <div class="g--10 p--4">
+        <form>
+            <label class="label-client-show">ID : </label>
+            <span th:text="${company.id}">ID</span><p></p>
+
+            <label class="label-client-show">Название компании </label>
+            <span th:text="${company.companyTitle}">Название компании:</span><p></p>
+
+            <label class="label-client-show">Страна: </label>
+            <span th:text="${company.country}">Страна:</span><p></p>
+
+            <label class="label-client-show">Телефон: </label>
+            <span th:text="${company.tel}">Телефон:</span><p></p>
+
+            <label class="label-client-show">Email: </label>
+            <span th:text="${company.email}">Email:</span><p></p>
+
+
+            <!--            <label class="label-client-show">Отчество:</label>-->
+<!--            <span th:text="${client.patronymicName}">Отчество</span><p></p>-->
+
+<!--            <label class="label-client-show">Дата рождения:</label>-->
+<!--            <span th:text="${client.birthDate}">Дата рождения</span><p></p>-->
+
+<!--            <label class="label-client-show">Серия паспорта:</label>-->
+<!--            <span th:text="${client.passSeries}">Серия паспорта</span><p></p>-->
+
+<!--            <label class="label-client-show">Номер паспорта:</label>-->
+<!--            <span th:text="${client.passNumber}">Номер паспорта</span><p></p>-->
+
+<!--            <label class="label-client-show">Кем выдан:</label>-->
+<!--            <span th:text="${client.passAuthority}">Орган, выдавший паспорт</span><p></p>-->
+
+<!--            <label class="label-client-show">Дата выдачи:</label>-->
+<!--            <span th:text="${client.passIssueDate}">Дата выдачи</span><p></p>-->
+
+<!--            <label class="label-client-show">Идентификационный номер:</label>-->
+<!--            <span th:text="${client.passIdentificationNumber}">Идентификационный номер</span><p></p>-->
+
+<!--            <label class="label-client-show">Место рождения:</label>-->
+<!--            <span th:text="${client.birthPlace}">Место рождения</span><p></p>-->
+
+<!--            <label class="label-client-show">Город фактического проживания:</label>-->
+<!--            <span th:text="${client.city.city}">Город фактического проживания</span><p></p>-->
+
+<!--            <label class="label-client-show">Адрес фактического проживания:</label>-->
+<!--            <span class="form-control-static" th:text="${client.currentAddress}">Адрес фактического проживания</span><p></p>-->
+
+<!--            <label class="label-client-show">Домашний телефон:</label>-->
+<!--            <span th:text="${!client.homePhone.isEmpty()} ? ${client.homePhone} : 'не указан'">Домашний телефон</span><p></p>-->
+
+<!--            <label class="label-client-show">Мобильный телефон:</label>-->
+<!--            <span th:text="${!client.mobilePhone.isEmpty()} ? ${client.mobilePhone} : 'не указан'">Мобильный телефон</span><p></p>-->
+
+<!--            <label class="label-client-show">E-mail:</label>-->
+<!--            <span th:text="${!client.email.isEmpty()} ? ${client.email} : 'не указан'">E-mail</span><p></p>-->
+
+<!--            <label class="label-client-show">Место работы:</label>-->
+<!--            <span th:text="${!client.workPlace.isEmpty()} ? ${client.workPlace} : 'не указан'">Место работы</span><p></p>-->
+
+<!--            <label class="label-client-show">Должность:</label>-->
+<!--            <span th:text="${!client.position.isEmpty()} ? ${client.position} : 'не указан'">Должность</span><p></p>-->
+
+<!--            <label class="label-client-show">Адрес прописки:</label>-->
+<!--            <span  th:text="${client.residenceAddress}">Адрес прописки</span><p></p>-->
+
+<!--            <label class="label-client-show">Семейное положение:</label>-->
+<!--            <span th:text="${client.familyStatus.status}">Семейное положение</span><p></p>-->
+
+<!--            <label class="label-client-show">Гражданство:</label>-->
+<!--            <span th:text="${client.nationality.nationality}">Гражданство</span><p></p>-->
+
+<!--            <label class="label-client-show">Инвалидность:</label>-->
+<!--            <span th:text="${client.disability.disability}">Инвалидность</span><p></p>-->
+
+<!--            <label class="label-client-show">Пенсионер:</label>-->
+<!--            <span th:text="${client.getRetirementStatus()}">Пенсионер</span><p></p>-->
+
+<!--            <label class="label-client-show">Ежемесячный доход:</label>-->
+<!--            <span th:text="${client.monthlyIncome != null} ? ${client.monthlyIncome} : 'не указан'">Ежемесячный доход</span>-->
+        </form>
+        <p></p><p></p>
+        <form th:action="@{/company/companies}">
+            <button type="submit" class="btn--raised btn--red" style="font-size: large">Вернуться к списку клиентов</button>
+        </form>
+    </div>
+
+
+</main>
+
+</body>
+</html>
