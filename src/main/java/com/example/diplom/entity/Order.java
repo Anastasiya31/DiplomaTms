@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 @Getter
@@ -21,8 +20,10 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "company_title")
+    private String company;
     @Column(name = "price")
-    private BigDecimal price;
+    private double price;
     @Column(name = "weight")
     private double weight;
 
@@ -40,6 +41,10 @@ public class Order implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return Double.compare(order.weight, weight) == 0 && Objects.equals(id, order.id) && Objects.equals(price, order.price);
+    }
+
+    public double getPrice() {
+        return product.getFinalPrice()*weight;
     }
 
     @Override

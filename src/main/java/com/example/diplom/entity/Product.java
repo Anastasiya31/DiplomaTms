@@ -1,9 +1,9 @@
 package com.example.diplom.entity;
 
-import javax.persistence.*;
-
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,6 +26,23 @@ public class Product implements Serializable {
     private String type;
     @Column(name = "grade")
     private String grade;
+
+    @Column(name = "cost_price")
+    private double costPrice;
+
+
+    @Column (name = "markup")
+    private double markup;
+
+    @Formula("cost_price + (cost_price * markup / 100)")
+    @Column (name = "final_price")
+    private double finalPrice;
+
+
+    public double getFinalPrice() {
+        return costPrice + (costPrice*markup/100);
+    }
+
     @ManyToOne
     @JoinColumn(name = "metal_category_id")
     private MetalCategory metalCategory;

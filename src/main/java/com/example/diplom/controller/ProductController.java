@@ -1,20 +1,12 @@
 package com.example.diplom.controller;
 
-import com.example.diplom.dto.CompanyDTO;
-import com.example.diplom.dto.OrderDTO;
 import com.example.diplom.dto.ProductDTO;
-import com.example.diplom.entity.Product;
-import com.example.diplom.exception.EntityNotFountException;
-import com.example.diplom.service.CurrencyService;
 import com.example.diplom.service.MetalCategoryService;
 import com.example.diplom.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,11 +18,17 @@ public class ProductController {
      * Просмотр списка компаний
      */
     @GetMapping("/products")
-    public ModelAndView getCompanies(Model model) {
+    public ModelAndView getProducts(Model model) {
         model.addAttribute("products", productService.getProducts());
         return new ModelAndView("products");
     }
 
+    /** Cписок для клиентов**/
+    @GetMapping("/productsUser")
+    public ModelAndView getProductsUser(Model model) {
+        model.addAttribute("products", productService.getProducts());
+        return new ModelAndView("userProducts");
+    }
 
     /** Просмотр информации */
     @GetMapping("product/{id}")
@@ -41,8 +39,7 @@ public class ProductController {
     }
 
     /** Создание нового*/
-
-    @RequestMapping("/new")
+    @GetMapping("/new")
     public ModelAndView newProduct(Model model) {
         model.addAttribute("product", new ProductDTO());
         addModelAttributes(model);
@@ -50,30 +47,23 @@ public class ProductController {
     }
 
     /** Сохранение в БД */
-    @PostMapping("/new")
-    public ModelAndView newProduct(@ModelAttribute ProductDTO productDTO, BindingResult bindingResult, Model model) {
-        //  if (bindingResult.hasErrors()) {
-        model.addAttribute("product", productDTO);
+    @PostMapping("/save")
+    public ModelAndView newCompany(@ModelAttribute("product") ProductDTO productDTO) {
         productService.createProduct(productDTO);
-        addModelAttributes(model);
         return new ModelAndView("productShow");
-//        } else {
-//            productService.createProduct(productDTO);
-//            return new ModelAndView("companies");
-//        }
     }
 
-
-    @PutMapping("/products/{id}")
-    public Product updateEmployee(@PathVariable("id") Long id,
-                                  @RequestBody ProductDTO productDTO) {
-        return productService.updateProduct(id, productDTO);
+    /**Обновление**/
+    @RequestMapping("/update/{id}")
+    public ModelAndView updateCompany(@PathVariable Long id, Model model, @ModelAttribute("product") ProductDTO productDTO) {
+        model.addAttribute("product", productService.updateProduct(id, productDTO));
+        addModelAttributes(model);
+        // companyService.updateCompany(id, companyDTO );
+        return new ModelAndView("productForm");
     }
-
-//    @DeleteMapping("/products/{id}")
-//    public void deleteProduct(@PathVariable("id") Long id) {
-//        productService.deleteProduct(id);
-//    }
+    /**
+     * Delete
+     **/
     @RequestMapping("/delete/{id}")
     public ModelAndView deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProduct(id);
@@ -85,3 +75,17 @@ public class ProductController {
         model.addAttribute("metalCategories", metalCategoryService.getMetalCategories());
     }
 }
+
+
+//    @RequestMapping("/edit/{id}")
+//public ModelAndView updateCompany(@PathVariable Long id, Model model, @ModelAttribute("product") ProductDTO productDTO) {
+////    model.addAttribute("company", companyService.updateCompany(id, companyDTO ));
+////    addModelAttributes(model);
+//    productService.updateProduct(productDTO);
+//    return new ModelAndView("productForm");
+//}
+
+//    @DeleteMapping("/products/{id}")
+//    public void deleteProduct(@PathVariable("id") Long id) {
+//        productService.deleteProduct(id);
+//    }

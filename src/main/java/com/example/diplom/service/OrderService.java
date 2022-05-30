@@ -2,15 +2,14 @@ package com.example.diplom.service;
 
 import com.example.diplom.dto.OrderDTO;
 import com.example.diplom.entity.Order;
-import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.OrderMapper;
 import com.example.diplom.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,18 +21,13 @@ public class OrderService {
 
     public List<OrderDTO> getOrders() {
         return orderRepository.findAll()
-                .stream().map(OrderMapper::orderToOrderDTO).collect(Collectors.toList());
+                .stream()
+                .map(OrderMapper::orderToOrderDTO)
+                .collect(Collectors.toList());
     }
-
+    @SneakyThrows
     public Order createOrder(OrderDTO orderDTO) {
-        Order order = Order.builder()
-                .price(orderDTO.getPrice())
-                .product(orderDTO.getProduct())
-                .currency(orderDTO.getCurrency())
-                .weight(orderDTO.getWeight())
-                .build();
-
-        return orderRepository.save(order);
+        return orderRepository.save(OrderMapper.orderDtoToOrder(orderDTO));
     }
 
     public Order updateOrder(Long id, OrderDTO orderDTO) {
@@ -64,6 +58,5 @@ public class OrderService {
 //
 //        return order;
         return orderRepository.findById(id).orElse(null);
-
     }
 }

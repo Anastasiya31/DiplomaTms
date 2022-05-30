@@ -2,7 +2,6 @@ package com.example.diplom.service;
 
 import com.example.diplom.dto.InvoiceDTO;
 import com.example.diplom.entity.Invoice;
-import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.InvoiceMapper;
 import com.example.diplom.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

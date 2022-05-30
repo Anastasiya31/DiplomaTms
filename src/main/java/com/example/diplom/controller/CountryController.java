@@ -1,8 +1,6 @@
 package com.example.diplom.controller;
 
-import com.example.diplom.dto.CompanyDTO;
 import com.example.diplom.dto.CountryDTO;
-import com.example.diplom.entity.Company;
 import com.example.diplom.entity.Country;
 import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.service.CountryService;

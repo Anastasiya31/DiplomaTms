@@ -1,10 +1,6 @@
 package com.example.diplom;
 
-import com.example.diplom.dto.CurrencyDTO;
-import com.example.diplom.entity.Currency;
 import com.example.diplom.exception.EntityNotFountException;
-import com.example.diplom.mapper.CurrencyMapper;
-import com.example.diplom.service.CurrencyService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

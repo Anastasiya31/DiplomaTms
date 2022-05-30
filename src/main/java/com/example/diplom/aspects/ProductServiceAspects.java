@@ -1,7 +1,6 @@
 package com.example.diplom.aspects;
 
 import com.example.diplom.entity.Product;
-import com.example.diplom.entity.Product;
 import com.example.diplom.exception.EntityNotFountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;

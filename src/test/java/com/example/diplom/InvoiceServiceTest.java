@@ -1,10 +1,7 @@
 package com.example.diplom;
 
-import com.example.diplom.dto.InvoiceDTO;
 import com.example.diplom.entity.*;
 import com.example.diplom.exception.EntityNotFountException;
-import com.example.diplom.mapper.InvoiceMapper;
-import com.example.diplom.service.InvoiceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -13,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @SpringBootTest

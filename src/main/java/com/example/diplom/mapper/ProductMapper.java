@@ -12,6 +12,9 @@ public class ProductMapper {
                 .grade(productDTO.getGrade())
                 .metalCategory(productDTO.getMetalCategory())
                 .type(productDTO.getType())
+                .costPrice(productDTO.getCostPrice())
+                .markup(productDTO.getMarkup())
+                .finalPrice(productDTO.getFinalPrice())
                 .build();
     }
 
@@ -21,6 +24,9 @@ public class ProductMapper {
                 .grade(product.getGrade())
                 .metalCategory(product.getMetalCategory())
                 .type(product.getType())
+                .costPrice(product.getCostPrice())
+                .markup(product.getMarkup())
+                .finalPrice(product.getFinalPrice())
                 .build();
     }
 

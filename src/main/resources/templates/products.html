@@ -9,7 +9,7 @@
 <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 <main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
     <header class="container--wrap bg--black">
-        <h1 class="m--2 g--4 g-s--12 docsHeader">Список товаров</h1>
+        <h1 class="m--4 g--4 g-s--12 docsHeader">Список товаров</h1>
     </header>
 
     <div class="g--10 m--1">
@@ -29,9 +29,10 @@
                 <td class="text-center" th:text="${product.metalCategory}">Категория металла</td>
                 <td class="text-center" th:text="${product.type}">Типа</td>
                 <td class="text-center" th:text="${product.grade}">Марка</td>
+                <td class="text-center" th:text="${product.costPrice}">Себестоимость</td>
                 <td class="text-center">
                     <a class="view" th:href="${'/product/product/' + product.getId()}"><img class='.m--1' src="../static/images/miscellaneous.png" th:src="@{/images/miscellaneous.png}"/></a>
-                    <a class="edit" data-toggle="tooltip" th:href="${'/product/edit/' + product.getId()}"><img class='.m--1' src="../static/images/tools-and-utensils.png" th:src="@{/images/tools-and-utensils.png}"/></a>
+                    <a class="edit" data-toggle="tooltip" th:href="${'/product/update/' + product.getId()}"><img class='.m--1' src="../static/images/tools-and-utensils.png" th:src="@{/images/tools-and-utensils.png}"/></a>
                     <a class="delete" data-toggle="tooltip" th:href="${'/product/delete/' + product.getId()}"><img src="../static/images/delete.png" th:src="@{/images/delete.png}"/></a>
                 </td>
             </tr>

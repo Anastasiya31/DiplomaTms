@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -20,7 +18,9 @@ public class OrderDTO {
 
     private Long id;
 
-    private BigDecimal price;
+    private String company;
+
+    private double price;
 
     private double weight;
 

@@ -2,10 +2,8 @@ package com.example.diplom;
 
 import com.example.diplom.dto.OrderDTO;
 import com.example.diplom.entity.Currency;
-import com.example.diplom.entity.Order;
 import com.example.diplom.entity.Product;
 import com.example.diplom.exception.EntityNotFountException;
-import com.example.diplom.mapper.OrderMapper;
 import com.example.diplom.repository.OrderRepository;
 import com.example.diplom.service.OrderService;
 import org.junit.jupiter.api.*;

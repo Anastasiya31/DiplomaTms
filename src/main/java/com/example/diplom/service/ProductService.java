@@ -2,7 +2,6 @@ package com.example.diplom.service;
 
 import com.example.diplom.dto.ProductDTO;
 import com.example.diplom.entity.Product;
-import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.ProductMapper;
 import com.example.diplom.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,7 +19,9 @@ public class ProductService {
 
     public List<ProductDTO> getProducts() {
         return productRepository.findAll()
-                .stream().map(ProductMapper::productToProductDTO).collect(Collectors.toList());
+                .stream()
+                .map(ProductMapper::productToProductDTO)
+                .collect(Collectors.toList());
     }
 
     public Product createProduct(ProductDTO productDTO) {

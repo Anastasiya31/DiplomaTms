@@ -1,10 +1,6 @@
 package com.example.diplom;
 
-import com.example.diplom.dto.MetalCategoryDTO;
-import com.example.diplom.entity.MetalCategory;
 import com.example.diplom.exception.EntityNotFountException;
-import com.example.diplom.mapper.MetalCategoryMapper;
-import com.example.diplom.service.MetalCategoryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

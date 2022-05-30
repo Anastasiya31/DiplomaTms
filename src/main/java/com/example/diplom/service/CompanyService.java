@@ -2,17 +2,14 @@ package com.example.diplom.service;
 
 import com.example.diplom.dto.CompanyDTO;
 import com.example.diplom.entity.Company;
-import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.CompanyMapper;
 import com.example.diplom.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,8 +17,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CompanyService {
     private final CompanyRepository companyRepository;
-
-
     public List<CompanyDTO> getCompanies() {
         return companyRepository.findAll()
                 .stream()
@@ -31,10 +26,10 @@ public class CompanyService {
 
     @SneakyThrows
     public Company createCompany(CompanyDTO companyDTO) {
-        Optional<Company> savedCompany = companyRepository.findById(companyDTO.getId());
-        if (savedCompany.isPresent()) {
-            throw new EntityNotFountException("Company already exist with given title:" + companyDTO.getCompanyTitle());
-        }
+//        Optional<Company> savedCompany = companyRepository.findById(companyDTO.getId());
+//        if (savedCompany.isPresent()) {
+//            throw new EntityNotFountException("Company already exist with given title:" + companyDTO.getCompanyTitle());
+//        }
         return companyRepository.save(CompanyMapper.companyDtoToCompany(companyDTO));
     }
 
