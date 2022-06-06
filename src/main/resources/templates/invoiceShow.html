@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--3 g--6 g-s--12 docsHeader">Просмотр информации о инвойсе</h1>
+    </header>
+    <div class="g--10 p--4">
+        <form>
+            <label class="label-client-show">ID : </label>
+            <span th:text="${invoice.id}">ID</span><p></p>
+
+            <label class="label-client-show">Тип инвойса </label>
+            <span th:text="${invoice.invoiceType}">Тип инвойса:</span><p></p>
+
+            <label class="label-client-show">Заказ: </label>
+            <span th:text="${invoice.order}">Заказ:</span><p></p>
+
+            <label class="label-client-show">Компания: </label>
+            <span th:text="${invoice.company}">Компания:</span><p></p>
+
+            <label class="label-client-show">Детали оплаты: </label>
+            <span th:text="${invoice.paymentDetails}">Детали оплаты:</span><p></p>
+            
+            <label class="label-client-show">Дата: </label>
+            <span th:text="${invoice.data}">Дата:</span><p></p>
+            
+
+
+        </form>
+        <p></p><p></p>
+        <form th:action="@{/invoice/invoices}">
+            <button type="submit" class="btn--raised btn--red" style="font-size: large">Вернуться к списку invoice</button>
+        </form>
+    </div>
+
+
+</main>
+
+</body>
+</html>
