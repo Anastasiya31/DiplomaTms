@@ -16,12 +16,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrderController {
     private final OrderService orderService;
 
+
     /**
      * Все заказы
      */
+
     @GetMapping("/orders")
     public ModelAndView getOrders(Model model) {
         model.addAttribute("orders", orderService.getOrders());
+        return new ModelAndView("orders");
+    }
+    @GetMapping("/ordersUser")
+    public ModelAndView getOrdersUser(Model model) {
+        model.addAttribute("orders", orderService.getOrdersUser());
         return new ModelAndView("orders");
     }
 

@@ -1,6 +1,7 @@
 package com.example.diplom.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -20,8 +21,9 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "company_title")
-    private String company;
+    @Column(name = "username")
+    private String username;
+    @Formula("100*weight")
     @Column(name = "price")
     private double price;
     @Column(name = "weight")

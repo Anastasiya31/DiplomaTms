@@ -2,8 +2,10 @@ package com.example.diplom;
 
 import com.example.diplom.dto.OrderDTO;
 import com.example.diplom.entity.Currency;
+import com.example.diplom.entity.Order;
 import com.example.diplom.entity.Product;
 import com.example.diplom.exception.EntityNotFountException;
+import com.example.diplom.mapper.OrderMapper;
 import com.example.diplom.repository.OrderRepository;
 import com.example.diplom.service.OrderService;
 import org.junit.jupiter.api.*;
@@ -44,7 +46,7 @@ public class OrderServiceTest {
                 .product(new Product())
                 .currency(new Currency())
                 .weight(122)
-                .price(BigDecimal.valueOf(33333))
+                .price(3333)
                 .build();
     }
 
@@ -83,7 +85,7 @@ public class OrderServiceTest {
                 .product(new Product())
                 .currency(new Currency())
                 .weight(152)
-                .price(BigDecimal.valueOf(33333))
+                .price(33333)
                 .build();
 
         given(orderRepository.findAll()).willReturn(List.of(order, order1));
@@ -103,7 +105,7 @@ public class OrderServiceTest {
                 .product(new Product())
                 .currency(new Currency())
                 .weight(111)
-                .price(BigDecimal.valueOf(2222))
+                .price(2222)
                 .build();
 
         given(orderRepository.findAll()).willReturn(Collections.emptyList());
@@ -153,7 +155,7 @@ public class OrderServiceTest {
                 .product(new Product())
                 .currency(new Currency())
                 .weight(111)
-                .price(BigDecimal.valueOf(2222))
+                .price(2222)
                 .build();
         Long orderId = 2L;
         // given

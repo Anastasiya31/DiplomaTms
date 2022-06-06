@@ -6,17 +6,17 @@ import com.example.diplom.mapper.CompanyMapper;
 import com.example.diplom.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class CompanyService {
     private final CompanyRepository companyRepository;
+
     public List<CompanyDTO> getCompanies() {
         return companyRepository.findAll()
                 .stream()
@@ -50,8 +50,8 @@ public class CompanyService {
     }
 
     @SneakyThrows
-    public Company getCompanyById(Long id) {
-        return companyRepository.findById(id).orElse(null);
+    public CompanyDTO getCompanyById(Long id) {
+        //     return companyRepository.findById(id).orElse(null);
 //        Company company;
 //        Optional<Company> companyOptional = companyRepository.findById(id);
 //        if (companyOptional.isPresent()) {
@@ -60,7 +60,10 @@ public class CompanyService {
 //            throw new EntityNotFountException("Company with id: " + id + " was not found");
 //        }
 //        return Optional.of(company);
-        //     return companyRepository.findById(id);
+//             return companyRepository.findById(id);
+        Company company = companyRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Company with id: " + id + " was not found"));
+        return CompanyMapper.companyToCompanyDTO(company);
+
     }
 }
 

@@ -18,7 +18,7 @@ public class OrderDTO {
 
     private Long id;
 
-    private String company;
+    private String username;
 
     private double price;
 
@@ -27,5 +27,6 @@ public class OrderDTO {
     private Product product;
 
     private Currency currency;
+
 
 }

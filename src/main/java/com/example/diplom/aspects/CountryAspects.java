@@ -4,12 +4,16 @@ import com.example.diplom.entity.Country;
 import com.example.diplom.exception.EntityNotFountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class CountryAspects {
 
+    private final Logger logger = LoggerFactory.getLogger(
+            this.getClass());
     @Pointcut("execution (* com.example.diplom.service.CountryService.createCountry(..))")
     public void createCountryPointcut() {
     }
@@ -28,20 +32,20 @@ public class CountryAspects {
 
     @Around("createCountryPointcut() || updateCountryPointcut() || deleteCountryPointcut()")
     public Object aroundAdviceTest(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("Before CountryMethod ");
+        logger.info("Before CountryMethod ");
         Object proceed = proceedingJoinPoint.proceed();
 
-        System.out.println("After CountryMethod ");
+        logger.info("After CountryMethod ");
         return proceed;
     }
 
     @AfterReturning(value = "getCountryByIdPointcut()", returning = "country")
     public void afterGetEmployee(Country country) {
-        System.out.println("Return country:  " + country.getCountry());
+        logger.info("Return country:  " + country.getCountry());
     }
 
     @AfterThrowing(value = "getCountryByIdPointcut()", throwing = "exception")
     public void afterThrowingGetEmployee(EntityNotFountException exception) {
-        System.out.println("Throwing exception: " + exception.getMessage());
+        logger.info("Throwing exception: " + exception.getMessage());
     }
 }

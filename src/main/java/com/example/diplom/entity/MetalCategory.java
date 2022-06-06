@@ -39,9 +39,6 @@ public class MetalCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "MetalCategory{" +
-                "id=" + id +
-                ", category='" + category + '\'' +
-                '}';
+        return category;
     }
 }

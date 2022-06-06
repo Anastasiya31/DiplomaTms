@@ -14,11 +14,6 @@
         <form th:object="${order}" th:action="@{/order/save}" method="POST">
             <input type="hidden" th:field="*{id}"/>
 
-            <label>Название Вашей организации: <span style="color: red">*</span></label>
-            <input type="text" th:field="*{company}"/>
-            <p style="color: red" class="error" th:errors="*{company}"></p>
-            <p></p>
-
             <label>Наименование продукта: <span style="color: red">*</span></label>
             <select th:field="*{product}">
                 <option th:each="product: ${products}" th:value="${product.id}" th:text="${product.getGrade()}"></option>

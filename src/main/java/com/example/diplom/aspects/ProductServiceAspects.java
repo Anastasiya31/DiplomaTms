@@ -4,11 +4,16 @@ import com.example.diplom.entity.Product;
 import com.example.diplom.exception.EntityNotFountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class ProductServiceAspects {
+
+    private final Logger logger = LoggerFactory.getLogger(
+            this.getClass());
     @Pointcut("execution (* com.example.diplom.service.ProductService.createProduct(..))")
     public void createProductPointcut() {
     }
@@ -27,20 +32,20 @@ public class ProductServiceAspects {
 
     @Around("createProductPointcut() || updateProductPointcut() || deleteProductPointcut()")
     public Object aroundAdviceTest(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("Before ProductMethod ");
+        logger.info("Before ProductMethod ");
         Object proceed = proceedingJoinPoint.proceed();
 
-        System.out.println("After ProductMethod ");
+        logger.info("After ProductMethod ");
         return proceed;
     }
 
     @AfterReturning(value = "getProductByIdPointcut()", returning = "product")
     public void afterGetEmployee(Product product) {
-        System.out.println("Return product:  " + product.getGrade() + " and " + product.getType());
+        logger.info("Return product:  " + product.getGrade() + " and " + product.getType());
     }
 
     @AfterThrowing(value = "getProductByIdPointcut()", throwing = "exception")
     public void afterThrowingGetEmployee(EntityNotFountException exception) {
-        System.out.println("Throwing exception: " + exception.getMessage());
+        logger.info("Throwing exception: " + exception.getMessage());
     }
 }

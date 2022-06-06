@@ -4,9 +4,11 @@ import com.example.diplom.dto.OrderDTO;
 import com.example.diplom.entity.Order;
 import com.example.diplom.mapper.OrderMapper;
 import com.example.diplom.repository.OrderRepository;
+import com.example.diplom.security.MyUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +27,19 @@ public class OrderService {
                 .map(OrderMapper::orderToOrderDTO)
                 .collect(Collectors.toList());
     }
+    public List<OrderDTO> getOrdersUser() {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getUsername());
+        return orderRepository.findOrdersByCompany(user.getUsername())
+                .stream()
+                .map(OrderMapper::orderToOrderDTO)
+                .collect(Collectors.toList());
+    }
     @SneakyThrows
     public Order createOrder(OrderDTO orderDTO) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getUsername());
+        orderDTO.setUsername(user.getUsername());
         return orderRepository.save(OrderMapper.orderDtoToOrder(orderDTO));
     }
 

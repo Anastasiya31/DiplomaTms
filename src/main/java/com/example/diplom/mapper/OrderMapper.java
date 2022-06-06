@@ -13,7 +13,7 @@ public class OrderMapper {
                 .currency(orderDTO.getCurrency())
                 .product(orderDTO.getProduct())
                 .price(orderDTO.getPrice())
-                .company(orderDTO.getCompany())
+                .company(orderDTO.getUsername())
                 .build();
     }
 
@@ -24,7 +24,7 @@ public class OrderMapper {
                 .currency(order.getCurrency())
                 .product(order.getProduct())
                 .price(order.getPrice())
-                .company(order.getCompany())
+                .username(order.getUsername())
                 .build();
     }
 

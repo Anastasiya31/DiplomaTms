@@ -6,7 +6,6 @@ import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.MetalCategoryMapper;
 import com.example.diplom.repository.MetalCategoryRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class MetalCategoryService {
     private final MetalCategoryRepository metalCategoryRepository;
 

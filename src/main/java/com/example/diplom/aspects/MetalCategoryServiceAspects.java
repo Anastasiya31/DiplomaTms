@@ -4,11 +4,16 @@ import com.example.diplom.entity.MetalCategory;
 import com.example.diplom.exception.EntityNotFountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class MetalCategoryServiceAspects {
+
+    private final Logger logger = LoggerFactory.getLogger(
+            this.getClass());
     @Pointcut("execution (* com.example.diplom.service.MetalCategoryService.createMetalCategory(..))")
     public void createMetalCategoryPointcut() {
     }
@@ -27,20 +32,20 @@ public class MetalCategoryServiceAspects {
 
     @Around("createMetalCategoryPointcut() || updateMetalCategoryPointcut() || deleteMetalCategoryPointcut()")
     public Object aroundAdviceTest(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("Before MetalCategoryMethod ");
+        logger.info("Before MetalCategoryMethod ");
         Object proceed = proceedingJoinPoint.proceed();
 
-        System.out.println("After MetalCategoryMethod ");
+        logger.info("After MetalCategoryMethod ");
         return proceed;
     }
 
     @AfterReturning(value = "getMetalCategoryByIdPointcut()", returning = "metalCategory")
     public void afterGetEmployee(MetalCategory metalCategory) {
-        System.out.println("Return metalCategory:  " + metalCategory.getCategory());
+        logger.info("Return metalCategory:  " + metalCategory.getCategory());
     }
 
     @AfterThrowing(value = "getMetalCategoryByIdPointcut()", throwing = "exception")
     public void afterThrowingGetEmployee(EntityNotFountException exception) {
-        System.out.println("Throwing exception: " + exception.getMessage());
+        logger.info("Throwing exception: " + exception.getMessage());
     }
 }
