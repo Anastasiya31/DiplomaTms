@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/headeruser :: headeruser"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--4 g--4 g-s--12 docsHeader">Добавление заказа</h1>
+    </header>
+
+    <div class="g--8 m--3">
+        <form th:object="${order}" th:action="@{/order/save}" method="POST">
+            <input type="hidden" th:field="*{id}"/>
+
+<!--            <label>Название Вашей организации: <span style="color: red">*</span></label>-->
+<!--            <input type="text" th:field="*{company}"/>-->
+<!--            <p style="color: red" class="error" th:errors="*{company}"></p>-->
+<!--            <p></p>-->
+
+            <label>Наименование продукта: <span style="color: red">*</span></label>
+            <select th:field="*{product}">
+                <option th:each="product: ${products}" th:value="${product.id}" th:text="${product.getGrade()}"></option>
+            </select>
+            <p></p>
+
+            <label>Вес, кг: <span style="color: red">*</span></label>
+            <input type="text" th:field="*{weight}"/>
+            <p style="color: red" class="error" th:errors="*{weight}"></p>
+
+            <p></p>
+
+<!--            <label>Цена: <span style="color: red">*</span></label>-->
+<!--            <input type="text" th:field="*{price}"/>-->
+<!--            <p style="color: red" class="error"  th:errors="*{price}"></p>-->
+
+<!--            <p></p>-->
+
+            <label>Валюта: <span style="color: red">*</span></label>
+            <select th:field="*{currency}">
+                <option th:each="currency: ${currencies}" th:value="${currency.id}" th:text="${currency.code}"></option>
+            </select>
+            <p></p>
+
+            <button type="submit" class="btn-done btn--raised btn--red" style="font-size: large">Готово</button>
+
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

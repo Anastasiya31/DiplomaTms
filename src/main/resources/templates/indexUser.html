@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <style>
+        .img-block{
+            width: 40%;
+            float: left;
+            margin-right: 3%;
+        }
+        .red-block{
+            background-color: brown;
+            color: azure;
+            width: 40%;
+            float: right;
+            margin-right: 3%;
+            padding: 20px;
+        }
+        h3{
+color: azure;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/headeruser :: headeruser"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--4 g--4 g-s--12 docsHeader">Начальная страница</h1>
+    </header>
+
+    <div class="g--12 m--1 container container--wrap--s" style="margin-top: -40px; margin-bottom: 0">
+        <img class="img-block" src="/images/photo.jpg" th:src="@{/images/photo.jpg}"/>
+        <div class="red-block">
+            <h3>ИНТЕРСТАЛЬ</h3>
+            <hr>
+            <span>Компания Интерсталь является крупнейшим поставщиком металлопроката, поковок и различных сталей на рынке Беларуси.
+            Более 25 лет работы на рынке Беларуси позволили нам зарекомендовать себя, как надежного поставщика металлопроката и поковок на предприятия самых различных сфер промышленности! Помимо нашей основной деятельности имеем возможность изготавливать из высококачественного металла такие детали как: валы, шестерни, промышленные ножи и многие другие стандартные и нестандартные детали по Вашим чертежам.</span>
+        </div>
+        <!--&lt;!&ndash;                &nbsp;<img src="/images/pressovye-pokovki.jpg" th:src="@{/images/pressovye-pokovki.jpg}"/>&ndash;&gt;-->
+        <!--                <img src="../static/images/Logo.png" th:src="@{/images/Logo.png}"/>-->
+
+    </div>
+    </div>
+</main>
+</body>
+</html>

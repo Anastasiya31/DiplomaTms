@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <style>
+        .containerr {
+            position: relative;
+            text-align: center;
+            color: white;
+            width: 100%;
+            height: 90%;
+        }
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+        }
+        .containerr:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        /* img{
+            opacity: 90%;
+        } */
+             h1{
+            color: aliceblue;
+                 font-size: 64px;
+        }
+    </style>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--4 g--4 g-s--12 docsHeader">Начальная страница</h1>
+    </header>
+
+    <div class="container container--wrap--s" style="margin-top: -7%; margin-right: 0">
+     <!--
+         <h1>Добро пожаловать!</h1>-->
+        <div class="containerr">
+            <img class="img-block" src="/images/bg.jpg" th:src="@{/images/bg.jpg}" style="width:100%;"/>
+        </div>
+<!--            <img src="/img/bg.jpg" alt="Snow" style="width:100%;">-->
+        <h1 class="centered">Добро пожаловать!</h1>
+
+    </div>
+</main>
+</body>
+</html>
