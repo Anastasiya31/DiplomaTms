@@ -1,11 +1,11 @@
 package com.example.diplom.entity;
 
 import lombok.*;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Getter
@@ -28,19 +28,20 @@ public class Product implements Serializable {
     private String grade;
 
     @Column(name = "cost_price")
-    private double costPrice;
+    private BigDecimal costPrice;
 
-
-    @Column (name = "markup")
+    @Column(name = "company")
+    private String company;
+    @Column(name = "markup")
     private double markup;
+    // @Formula("cost_price + (cost_price * markup / 100)")
+    @Column(name = "final_price")
+    private BigDecimal finalPrice;
 
-    @Formula("cost_price + (cost_price * markup / 100)")
-    @Column (name = "final_price")
-    private double finalPrice;
+    public BigDecimal getFinalPrice() {
 
-
-    public double getFinalPrice() {
-        return costPrice + (costPrice*markup/100);
+        BigDecimal f = costPrice.multiply(new BigDecimal(markup/100));
+        return costPrice.add(f);
     }
 
     @ManyToOne

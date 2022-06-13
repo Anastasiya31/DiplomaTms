@@ -1,11 +1,11 @@
 package com.example.diplom.entity;
 
 import lombok.*;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Getter
@@ -23,9 +23,9 @@ public class Order implements Serializable {
     private Long id;
     @Column(name = "username")
     private String username;
-    @Formula("100*weight")
+    // @Formula("100*weight")
     @Column(name = "price")
-    private double price;
+    private BigDecimal price;
     @Column(name = "weight")
     private double weight;
 
@@ -37,16 +37,16 @@ public class Order implements Serializable {
     @JoinColumn(name = "currency_id")
     private Currency currency;
 
+    public BigDecimal getPrice() {
+        return product.getFinalPrice().multiply(new BigDecimal(weight));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return Double.compare(order.weight, weight) == 0 && Objects.equals(id, order.id) && Objects.equals(price, order.price);
-    }
-
-    public double getPrice() {
-        return product.getFinalPrice()*weight;
     }
 
     @Override

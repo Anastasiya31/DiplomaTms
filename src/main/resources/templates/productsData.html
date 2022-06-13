@@ -9,39 +9,36 @@
 <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 <main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
     <header class="container--wrap bg--black">
-        <h1 class="m--4 g--4 g-s--12 docsHeader">Список заказов</h1>
+        <h1 class="m--4 g--4 g-s--12 docsHeader">Список товаров</h1>
     </header>
 
     <div class="g--10 m--1">
-        <table class="table table-striped table-bordered mydatatable fade-in-from-top" style="width: 100%">
+        <table class="table table-striped table-bproducted mydatatable fade-in-from-top" style="width: 100%">
             <thead>
             <tr>
                 <th class="text-center">ID</th>
-                <th class="text-center">Компания</th>
-                <th class="text-center">Продукт</th>
-                <th class="text-center">Вес</th>
+                <th class="text-center">Категория металла</th>
+                <th class="text-center">Тип</th>
+                <th class="text-center">Марка</th>
                 <th class="text-center">Цена</th>
-                <th class="text-center">Валюта</th>
-                <th class="text-center">Действия</th>
+                <th class="text-center">Компания</th>
             </tr>
             </thead>
             <tbody class="t">
-            <tr th:each="order : ${orders}">
-                <td th:text="${order.getId()}">ID</td>
-                <td class="text-center" th:text="${order.getUsername}">Продукт</td>
-                <td class="text-center" th:text="${order.product}">Продукт</td>
-                <td class="text-center" th:text="${order.weight}">Вес</td>
-                <td class="text-center" th:text="${order.price}">Цена</td>
-                <td class="text-center" th:text="${order.currency}">Валюта</td>
-                <td class="text-center">
-                    <a class="view" th:href="${'/order/order/' + order.id}"><img class='.m--1' src="../static/images/miscellaneous.png" th:src="@{/images/miscellaneous.png}"/></a>
-                    <a class="delete" data-toggle="tooltip" th:href="${'/order/delete/' + order.id}"><img src="../static/images/delete.png" th:src="@{/images/delete.png}"/></a>
-                </td>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.getId()}">ID</td>
+                <td class="text-center" th:text="${product.metalCategory}">Категория металла</td>
+                <td class="text-center" th:text="${product.type}">Типа</td>
+                <td class="text-center" th:text="${product.grade}">Марка</td>
+                <td class="text-center" th:text="${product.costPrice}">Цена</td>
+                <td class="text-center" th:text="${product.company}">Компания</td>
             </tr>
             </tbody>
         </table>
-        <p></p><p>
-
+        <p></p><p></p><p></p>
+        <form class="m--4" th:action="@{/product/new}">
+            <button type="submit" class="btn--raised btn--red" style="font-size: large">Добавить новый товар</button>
+        </form>
     </div>
 </main>
 
@@ -59,7 +56,7 @@
         paging: false,
         language: {
             "processing": "Подождите...",
-            "search": "Поиск по названию:",
+            "search": "Поиск по марке:",
             "lengthMenu": "Показать _MENU_ записей",
             "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
             "infoEmpty": "Записи с 0 до 0 из 0 записей",

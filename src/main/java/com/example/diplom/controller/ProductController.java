@@ -22,6 +22,11 @@ public class ProductController {
         model.addAttribute("products", productService.getProducts());
         return new ModelAndView("products");
     }
+    @GetMapping("/productsData")
+    public ModelAndView getProductsData(Model model) {
+        model.addAttribute("products", productService.getProducts());
+        return new ModelAndView("productsData");
+    }
 
     /** Cписок для клиентов**/
     @GetMapping("/productsUser")

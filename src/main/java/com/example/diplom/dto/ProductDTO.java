@@ -4,6 +4,8 @@ import com.example.diplom.entity.MetalCategory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,11 +21,13 @@ public class ProductDTO {
 
     private String grade;
 
-    private double costPrice;
+    private BigDecimal costPrice;
 
     private double markup;
 
-    private double finalPrice;
+    private BigDecimal finalPrice;
 
     private MetalCategory metalCategory;
+
+    private String company;
 }

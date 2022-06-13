@@ -3,11 +3,12 @@ package com.example.diplom;
 import com.example.diplom.dto.CompanyDTO;
 import com.example.diplom.entity.Company;
 import com.example.diplom.entity.Country;
-import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.CompanyMapper;
 import com.example.diplom.repository.CompanyRepository;
 import com.example.diplom.service.CompanyService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
@@ -20,10 +21,10 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -151,7 +152,7 @@ public class CompanyServiceTest {
     @Test
     public void givenCompanyId_whenGetCompanyById_thenReturnCompanyObject() {
 
-        Company company1 = Company.builder()
+       Company company1 = Company.builder()
                 .id(2L)
                 .companyTitle("11144")
                 .country(new Country())
@@ -169,4 +170,86 @@ public class CompanyServiceTest {
 }
 
 
+//
+//    @Test
+//    @DisplayName("Testing saving Company failed")
+//    void testSaveCompanyFailed() {
+//        Company expected = new Company(1L, "OOO \"Interstal\"", new Country(1L, "Беларусь"), "+375441312311", "interstal@gmail.com");
+//        Company actualCompany = companyService.createCompany(CompanyMapper.companyToCompanyDTO(expected));
+//        Assertions.assertNotEquals(expected, actualCompany);
+//    }
+//
+//    @Test
+//    @DisplayName("Testing updating Company success")
+//    void testUpdateCompanySuccess() throws EntityNotFountException {
+//        Long id = 1L;
+//        Company expected = new Company(1L, "OOO \"Interstal\"", new Country(1L, "Беларусь"), "+375441312311", "interstal@gmail.com");
+//        companyService.updateCompany(1L,CompanyMapper.companyToCompanyDTO(expected));
+//        Company actualCompany =  companyService.getCompanyById(id);
+//        Assertions.assertEquals(expected, actualCompany);
+//    }
+//
+//    @Test
+//    @DisplayName("Testing updating Company failed")
+//    void testUpdateCompanyFailed() throws EntityNotFountException {
+//        Long id = 100L;
+//        Company expected = new Company(1L, "OOO \"Interstal\"", new Country(1L, "Беларусь"), "+375441312311", "interstal@gmail.com");
+//        companyService.updateCompany(1L,CompanyMapper.companyToCompanyDTO(expected));
+//        Company actualCompany =  companyService.getCompanyById(id);
+//        Assertions.assertNotEquals(expected, actualCompany);
+//    }
+//
+//    @Test
+//    @DisplayName("Testing delete Company which exists in database")
+//    @Tag("Company-TEST")
+//    void testDeleteCompanySuccess() throws EntityNotFountException {
+//        Long id = 1L;
+//        companyService.deleteCompany(id);
+//        Company actualCompany = companyService.getCompanyById(1L);
+//        Assertions.assertNull(actualCompany);
+//    }
+//    @Test
+//    @DisplayName("Testing delete Company which exists in database")
+//    @Tag("Company-TEST")
+//    void testDeleteCompanyFailed() throws EntityNotFountException {
+//        Long id = 1L;
+//        companyService.deleteCompany(id);
+//        Company actualCompany = companyService.getCompanyById(id);
+//        Assertions.assertNotEquals(null,actualCompany);
+//    }
+
+//
+//    @Test
+//    @ParameterizedTest
+//    @DisplayName("Testing search Company which exists in database")
+//    @Tag("Company-TEST")
+//    @ValueSource(ints = {1})
+//    void FindCompanyByIdExists() throws EntityNotFountException {
+//        Long id = 1L;
+//        CompanyDTO actual = CompanyMapper.companyToCompanyDTO(companyService.getCompanyById(1L));
+////        Mockito.when(companyRepository.getById(id)).thenReturn(null);
+////
+////        Company res = companyService.getCompanyById(id);
+//
+//        CompanyDTO expected = new CompanyDTO();
+//        Assertions.assertAll(()->{
+//        Assertions.assertEquals(expected.getCompanyTitle(),actual.getCompanyTitle());
+//            Assertions.assertEquals(expected.getTel(),actual.getTel());
+//        });
+//    }
+//
+//    @Test
+//    @DisplayName("Testing search Company which non exists in database")
+//    @Tag("Company-TEST")
+//    void FindCompanyByIdNotExists(){
+//        Long id = 1L;
+//        CompanyDTO actual = CompanyMapper.companyToCompanyDTO(companyService.getCompanyById(1L));
+//        CompanyDTO expected = new CompanyDTO(1L, "OOO \"Interstal\"", new Country(1L, "Беларусь"), "+375441312311", "interstal@gmail.com");
+//        Assertions.assertAll(()->{
+//            Assertions.assertNotEquals(expected.getCompanyTitle(),actual.getCompanyTitle());
+//            Assertions.assertNotEquals(expected.getTel(),actual.getTel());
+//
+//        });
+//    }
+//
 

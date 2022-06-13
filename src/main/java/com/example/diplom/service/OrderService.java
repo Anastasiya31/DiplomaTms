@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class OrderService {
     public List<OrderDTO> getOrdersUser() {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(user.getUsername());
-        return orderRepository.findOrdersByCompany(user.getUsername())
+        return orderRepository.findOrdersByUsername(user.getUsername())
                 .stream()
                 .map(OrderMapper::orderToOrderDTO)
                 .collect(Collectors.toList());
@@ -38,7 +39,6 @@ public class OrderService {
     @SneakyThrows
     public Order createOrder(OrderDTO orderDTO) {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(user.getUsername());
         orderDTO.setUsername(user.getUsername());
         return orderRepository.save(OrderMapper.orderDtoToOrder(orderDTO));
     }
@@ -59,17 +59,8 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    public Order getOrderById(Long id){
-//        Order order;
-//        Optional<Order> orderOptional = orderRepository.findById(id);
-//
-//        if (orderOptional.isPresent()) {
-//            order = orderOptional.get();
-//        } else {
-//            throw new EntityNotFountException("Order with id: " + id + " was not found");
-//        }
-//
-//        return order;
-        return orderRepository.findById(id).orElse(null);
+    public OrderDTO getOrderById(Long id){
+        Order order = orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order with id: " + id + " was not found"));
+        return OrderMapper.orderToOrderDTO(order);
     }
 }

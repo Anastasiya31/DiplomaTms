@@ -8,7 +8,10 @@ import com.example.diplom.exception.EntityNotFountException;
 import com.example.diplom.mapper.OrderMapper;
 import com.example.diplom.repository.OrderRepository;
 import com.example.diplom.service.OrderService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
@@ -42,11 +45,13 @@ public class OrderServiceTest {
     public void setup() {
         orderRepository = Mockito.mock(OrderRepository.class);
         orderService = new OrderService(orderRepository);
+        Product p = new Product();
+        p.setCostPrice(BigDecimal.valueOf(333));
         order = Order.builder()
-                .product(new Product())
+                .product(p)
                 .currency(new Currency())
                 .weight(122)
-                .price(3333)
+                .price(BigDecimal.valueOf(3333))
                 .build();
     }
 
@@ -68,7 +73,7 @@ public class OrderServiceTest {
         given(orderRepository.findById(order.getId()))
                 .willReturn(Optional.of(order));
         // when -  action or the behaviour that we are going test
-        org.junit.jupiter.api.Assertions.assertThrows(EntityNotFountException.class, () -> {
+        Assertions.assertThrows(EntityNotFountException.class, () -> {
             orderService.createOrder(OrderMapper.orderToOrderDTO(order));
         });
         // then
@@ -79,13 +84,15 @@ public class OrderServiceTest {
     @Test
     public void givenOrdersList_whenGetAllOrders_thenReturnOrdersList() {
         // given - precondition or setup
-
+        Product p = new Product();
+        p.setCostPrice(BigDecimal.valueOf(133));
         Order order1 = Order.builder()
                 .id(2L)
-                .product(new Product())
+                .product(p)
                 .currency(new Currency())
                 .weight(152)
-                .price(33333)
+                .username("sss")
+                .price(BigDecimal.valueOf(33333))
                 .build();
 
         given(orderRepository.findAll()).willReturn(List.of(order, order1));
@@ -100,12 +107,15 @@ public class OrderServiceTest {
     @DisplayName("JUnit test for getAllOrders method (negative scenario)")
     @Test
     public void givenEmptyOrdersList_whenGetAllOrders_thenReturnEmptyOrdersList() {
+        Product p = new Product();
+        p.setCostPrice(BigDecimal.valueOf(333));
         Order order1 = Order.builder()
                 .id(2L)
-                .product(new Product())
+                .product(p)
                 .currency(new Currency())
                 .weight(111)
-                .price(2222)
+                .username("sss")
+                .price(BigDecimal.valueOf(2222))
                 .build();
 
         given(orderRepository.findAll()).willReturn(Collections.emptyList());
@@ -149,19 +159,21 @@ public class OrderServiceTest {
     @DisplayName("JUnit test for getOrderById method")
     @Test
     public void givenOrderId_whenGetOrderById_thenReturnOrderObject() {
-
+        Product p = new Product();
+        p.setCostPrice(BigDecimal.valueOf(333));
         Order order1 = Order.builder()
                 .id(2L)
-                .product(new Product())
+                .product(p)
                 .currency(new Currency())
                 .weight(111)
-                .price(2222)
+                .username("sss")
+                .price(BigDecimal.valueOf(2222))
                 .build();
         Long orderId = 2L;
         // given
         given(orderRepository.findById(orderId)).willReturn(Optional.of(order1));
         // when
-        Order savedOrder = orderService.getOrderById(orderId);
+        OrderDTO savedOrder = orderService.getOrderById(orderId);
         // then
         assertThat(savedOrder).isNotNull();
     }

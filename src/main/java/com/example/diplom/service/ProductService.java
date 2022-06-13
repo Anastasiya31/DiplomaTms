@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,29 +32,21 @@ public class ProductService {
     public Product updateProduct(Long id, ProductDTO productDTO) {
         return productRepository.findById(id)
                 .map(product -> {
-                   ProductMapper.productDtoToProduct(productDTO);
+                    ProductMapper.productDtoToProduct(productDTO);
                     return productRepository.save(product);
                 })
                 .orElseGet(() -> {
                     productDTO.setId(id);
-                    return productRepository.save( ProductMapper.productDtoToProduct(productDTO));
+                    return productRepository.save(ProductMapper.productDtoToProduct(productDTO));
                 });
     }
 
     public void deleteProduct(Long id) {
-productRepository.deleteById(id);
+        productRepository.deleteById(id);
     }
 
-    public Product getProductById(Long id) {
-//        Product product;
-//        Optional<Product> productOptional = productRepository.findById(id);
-//
-//        if (productOptional.isPresent()) {
-//            product = productOptional.get();
-//        } else {
-//            throw new EntityNotFountException("Product with id: " + id + " was not found");
-//        }
-//        return product;
-        return productRepository.findById(id).orElse(null);
+    public ProductDTO getProductById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(" product with id: " + id + " was not found"));
+        return ProductMapper.productToProductDTO(product);
     }
 }

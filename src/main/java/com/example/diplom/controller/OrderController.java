@@ -16,11 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrderController {
     private final OrderService orderService;
 
-
     /**
      * Все заказы
      */
-
     @GetMapping("/orders")
     public ModelAndView getOrders(Model model) {
         model.addAttribute("orders", orderService.getOrders());

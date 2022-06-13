@@ -15,6 +15,7 @@ public class ProductMapper {
                 .costPrice(productDTO.getCostPrice())
                 .markup(productDTO.getMarkup())
                 .finalPrice(productDTO.getFinalPrice())
+                .company(productDTO.getCompany())
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class ProductMapper {
                 .costPrice(product.getCostPrice())
                 .markup(product.getMarkup())
                 .finalPrice(product.getFinalPrice())
+                .company(product.getCompany())
                 .build();
     }
 
