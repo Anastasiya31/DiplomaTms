@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}" media="screen">
+
+    <style>
+        html{
+            height: 100%;
+            /*background: -webkit-linear-gradient(206deg, #edefee,#c9c9c9);*/
+            background: linear-gradient(45deg, #333, #eee 65%)
+        }
+
+        .form-3 {
+            font-family: 'Ubuntu', 'Lato', sans-serif;
+            font-weight: 400;
+            /* Size and position */
+            width: 500px;
+            position: relative;
+            margin: 150px auto 30px;
+            padding: 10px;
+            overflow: hidden;
+
+            /* Styles */
+            background: #111;
+            border-radius: 0.4em;
+            border: 1px solid #191919;
+            box-shadow:
+                    inset 0 0 2px 1px rgba(255,255,255,0.08),
+                    0 16px 10px -8px rgba(0, 0, 0, 0.6);
+        }
+
+        .form-3 label {
+            /* Size and position */
+            width: 30%;
+            float: left;
+            padding-top: 9px;
+
+            /* Styles */
+            color: #ddd;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 0 #000;
+            text-indent: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .form-3 input[type=text],
+        .form-3 input[type=password] {
+            /* Size and position */
+            width: 60%;
+            float: right;
+            padding: 8px 5px;
+            margin-bottom: 10px;
+            font-size: 12px;
+
+            /* Styles */
+            background: linear-gradient(#d5d5d5, #a8a5a5);
+            border: 1px solid #000;
+            box-shadow:
+                    0 1px 0 rgba(255,255,255,0.1);
+            border-radius: 3px;
+
+            /* Font styles */
+            font-family: 'Ubuntu', 'Lato', sans-serif;
+            color: #fff;
+        }
+
+        .form-3 input[type=text]:hover,
+        .form-3 input[type=password]:hover,
+        .form-3 label:hover ~ input[type=text],
+        .form-3 label:hover ~ input[type=password] {
+            background: #27292c;
+        }
+
+        .form-3 input[type=text]:focus,
+        .form-3 input[type=password]:focus {
+            box-shadow: inset 0 0 2px #8c8a8a;
+            background: #c1c1c5;
+            border-color: #bf1717;
+            outline: none; /* Remove Chrome outline */
+        }
+        /*.form-3 p:nth-child(3),*/
+        /*.form-3 p:nth-child(4) {*/
+        /*    float: left;*/
+        /*    width: 50%;*/
+        /*}*/
+        /*.form-3 label[for=remember] {*/
+        /*    width: auto;*/
+        /*    float: none;*/
+        /*    display: inline-block;*/
+        /*    text-transform: capitalize;*/
+        /*    font-size: 11px;*/
+        /*    font-weight: 400;*/
+        /*    text-indent: 2px;*/
+        /*}*/
+
+        /*.form-3 input[type=checkbox] {*/
+        /*    margin-left: 10px;*/
+        /*    vertical-align: middle;*/
+        /*}*/
+
+        .form-3 input[type=submit] {
+            /* Width and position */
+            width: 100%;
+            padding: 8px 5px;
+
+            /* Styles */
+            border: 1px solid #a12121; /* Fallback */
+            border: 1px solid rgba(0,0,0,0.4);
+            box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.3),
+                    inset 0 10px 10px rgba(255,255,255,0.1);
+            border-radius: 3px;
+            background: #d22f2f;
+            cursor:pointer;
+
+            /* Font styles */
+            font-family: 'Ubuntu', 'Lato', sans-serif;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
+        }
+
+        .form-3 input[type=submit]:hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .form-3 input[type=submit]:active {
+            background: #f54646;
+            box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+            border-color: #c4c2c2; /* Fallback */
+            border-color: rgba(100, 90, 90, 0.9);
+        }
+
+        .no-boxshadow .form-3 input[type=submit]:hover {
+            background: #ea0000;
+        }
+
+        /* Gradient line */
+        .form-3:after {
+            /* Size and position */
+            content: "";
+            height: 1px;
+            width: 33%;
+            position: absolute;
+            left: 20%;
+            top: 0;
+
+            /* Styles */
+            background: linear-gradient(left, transparent, #444, #b6b6b8, #444, transparent);
+        }
+
+        /* Small flash */
+        .form-3:before {
+            /* Size and position */
+            content: "";
+            width: 8px;
+            height: 5px;
+            position: absolute;
+            left: 34%;
+            top: -7px;
+
+            /* Styles */
+            border-radius: 50%;
+            box-shadow: 0 0 6px 4px #fff;
+        }
+
+        .form-3 p:before{
+            /* Size and position */
+            content: "";
+            width: 250px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 45px;
+
+            /* Styles */
+            transform: rotate(75deg);
+            background: linear-gradient(50deg, rgba(255,255,255,0.15), rgba(0,0,0,0));
+            pointer-events: none;
+        }
+
+        .no-pointerevents .form-3 p:before {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<form class="form-3" name="f"  th:action="@{/login}" method="POST">
+
+
+    <p class="clearfix">
+        <label for="username">Username</label>:
+        <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Логин" />
+         </p>
+    <p class="clearfix">
+        <br>
+        <label for="password">Password</label>:
+        <input type="password" id="password" name="password" placeholder="Пароль"/>
+          </p>
+    <br>
+<!--    <p class="clearfix">-->
+<!--        <input type="checkbox" name="remember" id="remember">-->
+<!--        <label for="remember">Запомнить меня</label>-->
+<!--    </p>-->
+    <p class="clearfix">
+        <input type="submit" name="submit" value="Войти">
+    </p>
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>User:</td>-->
+<!--            <td><input type="text" name="username" value=""></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Password:</td>-->
+<!--            <td><input type="password" name="password" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><input name="submit" type="submit" value="submit" /></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+</form>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+</body>
+</html>

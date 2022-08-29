@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<main class="g--10 g-m--12 m--2 m-m--0 no-margin-vertical" role="main">
+    <header class="container--wrap bg--black">
+        <h1 class="m--3 g--6 g-s--12 docsHeader">Просмотр информации о клиенте</h1>
+    </header>
+    <div class="g--10 p--4">
+        <form>
+            <label class="label-client-show">ID : </label>
+            <span th:text="${order.id}">ID</span><p></p>
+
+            <label class="label-client-show">Наименование продукта </label>
+            <span th:text="${order.product}">Наименование продукта:</span><p></p>
+
+            <label class="label-client-show">Вес, кг: </label>
+            <span th:text="${order.weight}">Вес, кг:</span><p></p>
+
+            <label class="label-client-show">Цена: </label>
+            <span th:text="${order.price}">Цена:</span><p></p>
+
+            <label class="label-client-show">Валюта: </label>
+            <span th:text="${order.currency}">Валюта:</span><p></p>
+        </form>
+        <p></p><p></p>
+        <form th:action="@{/order/orders}">
+            <button type="submit" class="btn--raised btn--red" style="font-size: large">Вернуться к списку заказов</button>
+        </form>
+    </div>
+
+
+</main>
+
+</body>
+</html>
